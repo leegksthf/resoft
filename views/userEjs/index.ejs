@@ -1,0 +1,601 @@
+<link rel="stylesheet" href="/public/cssUser/hover.css">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4cd6069a11e9e7879a858cca60c2cac6"></script>
+<%- include('../partials/userHeader.ejs') %>
+<style>
+	.slick-tracker {
+		width: 1400px !important;
+	}
+
+	/* .cus_wrap .ecoce-img-wrap .ecoce-img,
+	.cus_wrap .ecoce-bot,
+	.cus_wrap .ministry-Environ-img,
+	.cus_wrap .eco-clean-earth,
+	.indexKakaMap{opacity: 0; animation-delay: 0.2s;} */
+
+::before,
+::after {
+  position: absolute;
+  content: "";
+}
+
+.btn-3{
+	justify-content: center;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  background: transparent;
+}
+  .btn span {         
+    position: relative;
+    text-transform: uppercase;
+    top: 0; left: 0;
+	width: 175px;
+	height: 35px;
+	line-height: 35px;
+	display: inline-block;
+    transition: 0.3s;
+	background: white;
+  }
+
+  .btn .second-btn-txt{
+	  background: var(--pink-color);
+  }
+
+	.btn-3 {
+  padding: 5px;
+}
+.btn-3::before,
+.btn-3::after {
+  background: transparent;
+  z-index: 2;
+  position: absolute;
+}
+
+/* 11. hover-border-3 */
+.btn.hover-border-1::before,
+.btn.hover-border-1::after {
+  width: 0%; height: 0%;
+  /* transition: 0.35s; */
+  transition: width 0.2s 0.15s linear, height 0.15s linear, opacity 0s 0.35s;
+  /* transition: width 0.2s(duration) 0.15s(delay) */
+  opacity: 0;
+
+}
+.btn.hover-border-1::before {
+  top: 0px; left: 0px;
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+}
+.btn.hover-border-1::after {
+  bottom: 0; right: 0;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+}
+.btn.hover-border-1:hover::before,
+.btn.hover-border-1:hover::after {
+  width: 99%;
+  height: 98%;
+  transition: width 0.2s linear, height 0.15s 0.2s linear, opacity 0s;   
+  /* height 0.15s(duration)/ 0.2s(delay) */
+  opacity: 1;
+}
+
+</style>
+<script>
+	$(document).ready(function () {
+
+		$('#slide3>ul>li').hide();
+		$('#slide3>ul>li:first-child').show();
+		setInterval(function () {
+			$('#slide3>ul>li:first-child').fadeOut().next().fadeIn().end(5000).appendTo('#slide3>ul');
+			$("#slide_title1").toggle();
+			$("#slide_title2").toggle();
+		}, 6000);
+
+
+		var active_num = $("input:radio[name=tab]:checked").val();
+
+		$("input:radio[name=tab]").change(function () {
+			/* var chk_tab = $(":input:radio[name=tab]:checked").val();
+			
+			$(".content1_wrap").hide();
+			$("#con"+chk_tab).show(); */
+
+			var click_num = $(this).val();
+
+			//alert("active_num : "+active_num+", click_num : "+click_num);
+
+			if (active_num - click_num > 0) {
+				prev(active_num - click_num);
+			} else if (active_num - click_num < 0) {
+				next(click_num - active_num);
+			}
+
+			active_num = click_num;
+		});
+
+		$('.news_list').slick({
+			slidesToShow: 4,
+			slidesToScroll: 1,
+			autoplay: true,
+			autoplaySpeed: 3000,
+			arrows: false,
+			dots: false,
+			pauseOnHover: false,
+			responsive: [{
+				breakpoint: 940,
+				settings: {
+					slidesToShow: 2
+				}
+			}, {
+				breakpoint: 430,
+				settings: {
+					slidesToShow: 1
+				}
+			}]
+		});
+	});
+
+	function prev(cnt) {
+		var move_width = 1910 * cnt;
+
+		$(".content_slide").css({
+			left: "-=" + move_width + "px"
+		});
+
+		for (var i = 0; i < cnt; i++) {
+			$(".content_slide").children(":last").insertBefore($(".content_slide").children(
+				":first")); // first 이전에 last 삽입			
+		}
+
+		/* $(".content_slide").stop(true).animate({left : "0"}, 500, function() {
+			$(this).css({left : "0"});
+		}); */
+
+		$(".content_slide").stop(true).css({
+			opacity: 0,
+			left: "0"
+		});
+		$(".content_slide").stop(true).animate({
+			opacity: 1
+		}, 500);
+	}
+
+	function next(cnt) {
+		var move_width = 1910 * cnt;
+
+		/* $(".content_slide").stop(true).animate({left : "-="+move_width+"px"}, 500, function() {
+			for(var i=0; i<cnt; i++){
+				$(this).children(":first").insertAfter($(this).children(":last"));
+			}
+			$(this).css({left : "0"});
+		}); */
+
+		for (var i = 0; i < cnt; i++) {
+			$(".content_slide").children(":first").insertAfter($(".content_slide").children(":last"));
+		}
+		$(".content_slide").stop(true).css({
+			opacity: 0,
+			left: "0"
+		});
+		$(".content_slide").stop(true).animate({
+			opacity: 1
+		}, 500);
+	}
+
+
+	var fileArr = new Array();
+	var noImg = false;
+
+
+	function fnDetail(flag, idx) {
+		window.location.href = "user/boardDetailDir.action?flag=" + flag + "&idx=" + idx;
+	}
+</script>
+
+
+<div class="b_wrap">
+	<div class="busi_content_wrap">
+		<ul class="business_list">
+			<li>
+				<a href="javascript:void(0);" class="front">
+					<p class="title">앱(APP)개발</p>
+					<p class="subTitleEng">android/ios app</p>
+					<div class="img_wrap">
+						<img src="/public/user/main/구글스토어.png" alt="구글스토어" class= />
+						<img src="/public/user/main/앱스토어.png" alt="앱스토어" />
+					</div>
+				</a>
+				<button class="back">asdf</button>
+			</li>
+			<li>
+				<a href="javascript:void(0);" class="front">
+					<p class="title">웹(WEB)구축</p>
+					<p class="subTitleEng">responsive web</p>
+					<div class="img_wrap">
+						<img src="/public/user/main/web.png" alt="웹구축" />
+					</div>
+				</a>
+				<button class="back">asdf</button>
+			</li>
+			<li>
+				<a href="javascript:void(0);" class="front">
+					<p class="title">빅데이터분석</p>
+					<p class="subTitleEng">ai bigdata</p>
+					<div class="img_wrap">
+						<img src="/public/user/main/bigdata.png" alt="빅데이터분석" />
+					</div>
+				</a>
+				<button class="back">asdf</button>
+			</li>
+			<li>
+				<a href="javascript:void(0);" class="front">
+					<p class="title">메타버스구현</p>
+					<p class="subTitleEng">metaverse</p>
+					<div class="img_wrap">
+						<img src="/public/user/main/metaverse.png" alt="메타버스" />
+					</div>
+					<!-- <div class="txt_wrap">
+						<button class="more_btn">
+							<span>more</span>
+						</button>
+					</div> -->
+				</a>
+				<button class="back">asdf</button>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<div class="news_wrap">
+	<div class="news_content_wrap">
+		<div class="title tit_center">
+			<h2 class="h_tit">프로젝트</h2>
+			<p class="subTitleEng">resoft projects</p>
+		</div>
+		<div class="btn_wrap">
+			<a href="/user/curriculum" class="more"><span>more</span></a>
+		</div>
+	</div>
+	<div class="container_slide">
+		<section class="news_list slider">
+			<div class="slide">
+				<a href="javascript:void(0);">
+					<div class="new_img">
+						<img src="/public/user/main/송파둘레길.png" alt="">
+					</div>
+					<div class="new_body">
+						<span class="cate">[APP]</span>
+						<h3 class="news_tit">송파구청 송파둘레길 비대면 걷기대회</h3>
+					</div>
+				</a>
+			</div>
+			<div class="slide">
+				<a href="javascript:void(0);">
+					<div class="new_img">
+						<img src="/public/user/main/대구인문사회대학.png" alt="">
+					</div>
+					<div class="new_body">
+						<span class="cate">[WEB]</span>
+						<h3 class="news_tit">대구인문사회대학</h3>
+					</div>
+				</a>
+			</div>
+			<div class="slide">
+				<a href="javascript:void(0);">
+					<div class="new_img">
+						<img src="/public/user/main/달서마라톤.png" alt="">
+					</div>
+					<div class="new_body">
+						<span class="cate">[APP]</span>
+						<h3 class="news_tit">제15회 달서 하프 비대면 마라톤대회</h3>
+					</div>
+				</a>
+			</div>
+			<div class="slide">
+				<a href="javascript:void(0);">
+					<div class="new_img">
+						<img src="/public/user/main/한성백제마라톤.png" alt="">
+					</div>
+					<div class="new_body">
+						<span class="cate">[APP]</span>
+						<h3 class="news_tit">제8회 한성백제 비대면 마라톤대회</h3>
+					</div>
+				</a>
+			</div>
+			<div class="slide">
+				<a href="javascript:void(0);">
+					<div class="new_img">
+						<img src="/public/user/main/마스크쓰고.png" alt="">
+					</div>
+					<div class="new_body">
+						<span class="cate">[APP]</span>
+						<h3 class="news_tit">제8회 한성백제 비대면 마라톤대회</h3>
+					</div>
+				</a>
+			</div>
+		</section>
+	</div>
+
+
+</div>
+<div class="cus_wrap">
+		<img src="/public/user/main/에코스봇.png" alt="" class="ecoce-bot wow fadeInDown" data-wow-delay="0.3s">
+		<img src="/public/user/main/환경부탄소중립기본법.png" alt="" class="ministry-Environ-img wow fadeInRight" data-wow-delay="0.3s">
+	<div class="ecoce-img-wrap">
+		<img src="/public/user/main/에코스모바일원.png" alt="" class="ecoce-img wow fadeInLeft" data-wow-delay="0.3s">
+		<!-- <img src="/public/user/main/휴대폰원배경.png" alt=""> -->
+	</div>
+	<div class="eco-clean-earth wow fadeInRight" data-wow-delay="0.6s">
+		<p>국내 최초 <br />
+			&#10075; 탄소중립 실천인증 플랫폼 &#10076;
+		</p>
+		<p>ECO-Clean Earth</p>
+	</div>
+</div>
+<div class="clients-img-wrap wow fadeInUp" data-wow-delay="0.8s">
+	<!-- <img src="/public/user/main/연계.png" alt=""> -->
+	<ul>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/대구광역시 건축사회.png" alt="">
+			</div>
+			<p>대구광역시 건축사회</p>
+		</li>
+		<li>
+			
+			<div class="img-wrap">
+			<img src="/public/user/main/대구광역시.png" alt="">
+		</div>
+			<p>대구광역시</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/매일신문.png" alt="">
+		</div>
+			<p>매일신문</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/경북대학교.png" alt="" class="sm-img">
+		</div>
+			<p>경북대학교</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/대구MBC문화원.png" alt="">
+		</div>
+			<p>대구MBC문화원</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/대구광역시 체육회.png" alt="">
+		</div>
+			<p>대구광역시 체육회</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/대구가톨릭대학교.png" alt="">
+		</div>
+			<p>대구가톨릭대학교</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/송파구청.png" alt="">
+		</div>
+			<p>송파구청</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/국민의힘.png" alt="">
+		</div>
+			<p>국민의 힘</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/국제라이온스협회.png" alt="">
+		</div>
+			<p>국제라이온스협회</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/한국전기공사협회.png" alt="">
+		</div>
+			<p>한국전기공사협회</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/즐거운세상.png" alt="" class="lg-img">
+		</div>
+			<p>(주)즐거운 세상</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/해양대학교.png" alt="" class="lg-img">
+		</div>
+			<p>한국해양대학교</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/국제라이온스협회.png" alt="">
+		</div>
+			<p>국제로타리클럽</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/상공회의소.png" alt="">
+		</div>
+			<p>대구상공회의소</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/대한건설협회.png" alt="">
+		</div>
+			<p>대한건설협회</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/한국청년회의소.png" alt="">
+		</div>
+			<p>한국청년회의소</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/계명대.png" alt="" class="lg-img-width">
+		</div>
+			<p>계명대학교</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/목포해양대학교.png" alt="">
+		</div>
+			<p>목포해양대학교</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/대구공고.png" alt="">
+		</div>
+			<p>대구공업고등학교</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/대경산업협회.png" alt="">
+		</div>
+			<p>대경ICT산업협회</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/한국조리기능장협회.png" alt="" class="lg-img-width">
+		</div>
+			<p>한국조리기능장협회</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/여성기업인협회.png" alt="">
+		</div>
+			<p>IT여성기업인협회</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/중소기업융합연합회.png" alt="">
+		</div>
+			<p>중소기업융합연합회</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/대구신용보증재단.png" alt="">
+		</div>
+			<p>대구신용보증재단</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/달서구청.png" alt="">
+		</div>
+			<p>달서구청</p>
+		</li>
+		<li>
+			<div class="img-wrap">
+			<img src="/public/user/main/대구디지털산업진흥회.png" alt="">
+		</div>
+			<p>대구디지털산업진흥원</p>
+		</li>
+	</ul>
+</div>
+
+</div>
+<div class="box_wrap">
+	<img src="/public/user/main/리소프트로고_big.png" alt="" class="wow fadeInDown" data-wow-delay="0.3s">
+	<div class="box_btn btn-holder">
+		<button class="btn btn-3 hover-border-1">
+			<a href="/public/user/main/대구인문사회대학 입학원서.hwp" class="cus_btn" download><span>채용원서 다운로드</span></a>
+		</button>
+		<button class="btn btn-3 hover-border-1">
+			<a href="/user/regist" class="loc_btn"><span class="second-btn-txt">온라인 서비스문의</span></a>
+		</button>
+		</ul>
+	</div>
+</div>
+<div class="map-wrap">
+	<div id="map" class="indexKakaoMap wow fadeIn" data-wow-delay="0.3s"></div>
+	<div class="map-info-wrap wow fadeInRight" data-wow-delay="0.5s">
+		<div class="map-info">
+			<p>TEL</p>
+			<a href="tel:053-475-2110;" style="cursor: text"><p>(053) 475-2110</p></a>
+		</div>
+		<div class="map-info">
+			<p>FAX</p>
+			<a href="javascript:void(0);" style="cursor: text"><p>(0504) 257-5966</p></a>
+		</div>
+		<div class="map-info">
+			<p>E-MAIL</p>
+			<p>call@resoft.kr</p>
+		</div>
+		<div class="map-info">
+			<p>ADDRESS</p>
+			<p>(41260) 대구광역시 동구 동대구로 465,<br/>
+				대구스케일업허브(DASH) 704호<br/>
+				(주)리소프트
+			</p>
+		</div>
+	</div>
+</div>
+<%- include('../partials/userFooter.ejs') %>
+
+<script>
+	
+	// 카카오 지도 api
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(35.871691843254716, 128.62496478375644), //지도의 중심좌표.
+		level: 3 //지도의 레벨(확대, 축소 정도)
+	};
+
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+	// 마커가 표시될 위치입니다 
+	var markerPosition = new kakao.maps.LatLng(35.871691843254716, 128.62496478375644);
+
+	var imageSrc = '/public/user/main/지도마커.png', // 마커이미지의 주소입니다    
+    imageSize = new kakao.maps.Size(220, 45), // 마커이미지의 크기입니다
+    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	
+// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+markerPosition = new kakao.maps.LatLng(35.871691843254716, 128.62496478375644); // 마커가 표시될 위치입니다
+
+
+	// 마커를 생성합니다
+	var marker = new kakao.maps.Marker({
+		position: markerPosition,
+		image: markerImage
+	});
+
+	// 마커가 지도 위에 표시되도록 설정합니다
+	marker.setMap(map);
+	
+
+	// 애니메이션
+	// let ecoceImg = document.querySelector('.ecoce-img');
+	// let fadeIn = document.querySelectorAll('#fadeInRight');
+	// let indexKakaoMap = document.querySelector('.indexKakaoMap');
+	
+	// window.addEventListener("scroll", function() {
+	// 	let value = window.scrollY;
+		
+	// 	if(value > 1900 && value < 3600) {
+	// 		ecoceImg.style.animation = "fade-in-left 1s ease-in forwards";
+	// 		indexKakaoMap.style.animation = "fade-in-left 1s ease-in forwards";
+	// 		for(const fadeInRight of fadeIn) {
+	// 			fadeInRight.style.animation = "fade-in-right 1s ease-in forwards";
+	// 		}
+	// 	}
+	// });
+document.querySelectorAll('.button').forEach(button => 
+	button.innerHTML = '<div><span>' + 
+	button.textContent.trim().split('').join('</span><span>') + 
+	'</span></div>');
+</script>
