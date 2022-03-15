@@ -214,7 +214,7 @@
 </script>
 
 <header class="header">
-	<img src="/public/user/main/헤더배경사이드.png" alt="" class="header-side-img">
+	<!-- <img src="/public/user/main/헤더배경사이드.png" alt="" class="header-side-img"> -->
 	<div class="wrapper">
 		<div id="menupc-wrapper">
 			<div class="top_wrap">
@@ -351,8 +351,8 @@
 				<p>Evolution<br />
 					With New Software
 				</p>
-				<p><span>Mobile APP(Android/iOS) Development, </span><span>AI Bigdata Analysis, MetaVerse</span>
-					<span>Responsive WEBsite, </span><span>Brand Design Launch, </span><span>ICT Consulting</span>
+				<p><span>Mobile APP(Android/iOS) Development, </span><span>AI Bigdata Analysis, MetaVerse, </span>
+					<span><span>Responsive WEBsite, Brand Design Launch, </span><span>ICT Consulting</span></span>
 				</p>
 			</div>
 			<button>서비스 문의</button>
@@ -377,4 +377,11 @@
 	// 		bannerImg.style.animation = "fade-in-right 1s ease-in forwards";
 	// 	}
 	// });
+
+	const bannerTextWrap = document.getElementsByClassName('bannerText-wrap')[0]
+	const width = document.getElementsByClassName('bannerText-wrap')[0].clientWidth;
+	const halfWidth = width / 2;
+	if (window.matchMedia("(max-width: 940px)").matches) {
+		$(bannerTextWrap).css({ 'left': 'calc(50% - ' + halfWidth + 'px)' });
+	}
 </script>
