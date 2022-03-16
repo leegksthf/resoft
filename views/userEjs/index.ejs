@@ -648,34 +648,29 @@ markerPosition = new kakao.maps.LatLng(35.871691843254716, 128.62496478375644); 
 // });
 
 
-
-$(function(){
-	$(".customer_list").hide();
-	// const customerList = document.getElementsByClassName('customer_list');
-	// for(var i = 1; i < customerList.length ; i++) {
-		// 	if (i < 10) {
-			// 		customerList[i + 8].setAttribute('data-wow-delay', 1 + '.' + i + 's');
-			// 	} else {
-				// 		(i + '').split('');
-				// 	}
-				// }
-	$(".customer_list").slice(0, 24).show(); // select the first ten
-	const list = document.getElementsByClassName('customer_list');
-	for(var i = 0; i < list.length; i++) {
-		if(list[i].style.display = "none") {
-			this.setAttribute('data-wow-delay', '0.' + i + 1 + 's');
-		}
+	if (window.matchMedia("screen and (max-width: 1217px)").matches) {
+		$(function(){
+			$(".customer_list").hide();
+			$(".customer_list").slice(0, 24).show(); // select the first ten
+			var list = document.getElementsByClassName('customer_list');
+			var array = [];
+			for(var i = 0; i < list.length; i++) {
+				if(list[i].style.display == "none") {
+					array.push(list[i]);
+					}
+				}
+			for(var i = 1; i <= array.length; i++){
+				array[i-1].setAttribute('data-wow-delay', '0.' + i + 's');
+			}
+			$(".load").click(function(e){ 
+				e.preventDefault();
+				$(".customer_list:hidden").slice(0,8).addClass("wow fadeInUp").show();
+				if($(".customer_list:hidden").length == 0){
+					$(".load").hide();
+				}
+			});
+		});
 	}
-    $(".load").click(function(e){ // click event for load more
-        e.preventDefault();
-		$(".customer_list:hidden").addClass("wow fadeInUp").show();
-        // if($(".customer_list:hidden").length == 0){ // check if any hidden divs still exist
-        //     (".load").css("display") == "none"; // alert if there are none left
-        // }
-    });
-});
-
-
 
  
 </script>

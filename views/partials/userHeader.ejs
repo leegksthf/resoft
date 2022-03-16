@@ -378,10 +378,19 @@
 	// 	}
 	// });
 
-	const bannerTextWrap = document.getElementsByClassName('bannerText-wrap')[0]
-	const width = document.getElementsByClassName('bannerText-wrap')[0].clientWidth;
-	const halfWidth = width / 2;
-	if (window.matchMedia("(max-width: 940px)").matches) {
-		$(bannerTextWrap).css({ 'left': 'calc(50% - ' + halfWidth + 'px)' });
-	}
+	var bannerTextWrap = document.getElementsByClassName('bannerText-wrap')[0]
+	var width = bannerTextWrap.clientWidth;
+	var halfWidth = width / 2;
+		if (window.matchMedia("screen and (max-width: 940px)").matches) {
+			$(bannerTextWrap).css({ 'left': 'calc(50% - ' + halfWidth + 'px)' });
+		}
+
+	window.addEventListener('resize', function() {
+		if (window.matchMedia("screen and (max-width: 940px)").matches) {
+				$(bannerTextWrap).css({ 'left': 'calc(50% - ' + halfWidth + 'px)' });
+			} else {
+					bannerTextWrap.style.left = "0";
+				}
+			}
+		);
 </script>
