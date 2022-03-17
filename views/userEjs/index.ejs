@@ -618,47 +618,43 @@ markerPosition = new kakao.maps.LatLng(35.871691843254716, 128.62496478375644); 
 
 	if (window.matchMedia("screen and (max-width: 1217px)").matches) {
 		$(function(){
-			var lineCount = 8;
 			$(".customer_list").hide();
-			var list = document.getElementsByClassName('customer_list');
 			var array = [];
-			var arrayLineSt = [];
-			var arrayLineNd1 = [];
-			var arrayLineNd2 = [];
-			// var arrayLineRd = [];
-			$(".customer_list").slice(0, 24).show();
-			for(var i = 0; i < list.length; i++) {
-				if(list[i].style.display == "none") {
-					array.push(list[i]);
-				} else if(i < lineCount || i == (lineCount * 2 - 1)){
-					arrayLineSt.push(list[i]);
-				} else if(lineCount <= i && i < 15 && i !== (lineCount * 2 - 1)){
-					arrayLineNd1.push(list[i]);
-				} else if(lineCount <= 14 && i < 19 && i !== (lineCount * 2 - 1)){
-					arrayLineNd2.push(list[i]);
-				// } else {
-				// 	arrayLineRd.push(list[i]);
-				}
+			var list = document.getElementsByClassName('customer_list');
+			
+			for(var i=0; i < list.length;i++){
+				array.push(list[i]);
 			}
-			arrayLineNd1.reverse();
-			var arrayLineNd = [...arrayLineNd1, ...arrayLineNd2];
+			
+			var visiArray = [];
+			visiArray = array.slice(0,8);
+			visiArray = visiArray.concat(array.slice(8,16).reverse());
+			visiArray = visiArray.concat(array.slice(16,24));
+			
+			var second = 0;
+			for(var i = 0; i < visiArray.length ; i++) {
+				second = second + 0.1;
+				visiArray[i].setAttribute('data-wow-delay', second + 's')
+			}
 
-			for(var i = 0; i < arrayLineSt.length ; i++) {
-				arrayLineSt[i].setAttribute('data-wow-delay', '0.' + (i+1) + 's')
-			}
-			for(var i = 0; i < arrayLineNd.length; i++) {
-				arrayLineNd[i].setAttribute('data-wow-delay', '1.' + i + 's')
-			}
+			$(".customer_list").slice(0, 24).show();
 
 			//숨겨진 아이콘
-			for(var i = 0; i < array.length; i++){
-				array[i].setAttribute('data-wow-delay', '0.' + (i+1) + 's');
-			}
 			$(".load").click(function(e){ 
 				e.preventDefault();
-				$(".customer_list:hidden").slice(0,8).addClass("wow fadeInUp").show();
-				var scrolledTopPosition = window.pageYOffset;
-				window.scrollTo(0, scrolledTopPosition + 1);
+				var hiddenArray = [];
+				hiddenArray = array.slice(24, 27);
+
+				var hSecond = 0;
+				for(var i = 0; i < hiddenArray.length; i++) {
+					hSecond = hSecond + 0.1;
+					console.log(hiddenArray[i])
+					hiddenArray[i].setAttribute('data-wow-delay', hSecond + 's');
+					hiddenArray[i].style.display = 'block';
+				}
+
+				window.scrollTo(0, window.pageYOffset + 1);
+				window.scrollTo(0, window.pageYOffset - 1);
 				// if($(".customer_list:hidden").length == 0){
 				// 	$(".load").hide();
 				// }
@@ -667,7 +663,7 @@ markerPosition = new kakao.maps.LatLng(35.871691843254716, 128.62496478375644); 
 	}
 
 
-
+	//4개
 	if (window.matchMedia("screen and (max-width: 940px)").matches) {
 		$(function(){
 			$(".customer_list").hide();
