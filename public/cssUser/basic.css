@@ -240,10 +240,11 @@ letter-spacing: -1px; position: absolute; z-index: 999; left: 20%; top: 30%;}
 .b_wrap .business_list .flip .flip-item{backface-visibility: hidden; background: #f6f6f6; transition: 1s; width: 100%; height: 100%;}
 .b_wrap .business_list .flip .front{position: absolute; backface-visibility: hidden; transition: 1s; transform: rotateY(0deg);}
 .b_wrap .business_list .flip .front a{display: flex; flex-direction: column; justify-content: center; align-items: center;}
-.b_wrap .business_list .flip .back {transform: rotateY(-180deg);}
+.b_wrap .business_list .flip .back {transform: rotateY(-180deg);display: flex; align-items: center; justify-content: center;}
 .b_wrap .business_list .flip:hover .front{transform: rotateY(180deg);}
-.b_wrap .business_list .flip:hover .back{transform: rotateY(0deg);}
+.b_wrap .business_list .flip:hover .back{transform: rotateY(0deg); }
 
+mor
 /* .b_wrap .business_list .flip .front{position: absolute; z-index: 1; transform: rotateY(180deg);}
 .b_wrap .business_list .flip .back{position: absolute; z-index: 2; transform: rotateY(0deg);} */
 .b_wrap .busi_content_wrap .business_list .flip:first-child img{width: 170px;}
