@@ -228,6 +228,8 @@ letter-spacing: -1px; position: absolute; z-index: 999; left: 20%; top: 30%;}
 .subTitleEng {text-transform: uppercase; text-align: center; color: var(--pink-color); font-weight: 600; font-size: 15px; letter-spacing: 3px;}
 .b_wrap .business_list li a .img_wrap{position: relative; width: 100%; height: 185px}
 .b_wrap .business_list li a .img_wrap img{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px;}
+.b_wrap .busi_content_wrap .business_list .flip:first-child img{width: 140px;}
+
 /* .b_wrap .busi_content_wrap li:first-of-type img:first-child {left: 30%;}
 .b_wrap .busi_content_wrap li:first-of-type img:nth-child(2) {left: 70%;} */
 .b_wrap .business_list .flip{box-sizing: border-box; cursor: pointer; width: calc(100% / 4 - 3%); height: 350px; position: relative; margin: 0 1.5%;}
@@ -447,7 +449,7 @@ textarea{margin: 0px;width: 53%;height: 80px; border: 1px solid #a9a9a9;  paddin
 .cus_wrap .eco-clean-earth{position: absolute; right: 0; top: 830px; text-align: right; line-height: 45px; margin-top: 50px;}
 .cus_wrap .eco-clean-earth p:first-child{font-size: 40px; font-weight: 600;}
 .cus_wrap .eco-clean-earth p:last-child{font-size: 30px;}
-.clients-img-wrap{text-align: center; max-width: 1400px; margin: 75px auto;}
+.clients-img-wrap{text-align: center; max-width: 1400px; margin: 150px auto;}
 .clients-img-wrap ul{display: flex; flex-wrap: wrap;}
 .clients-img-wrap ul li{color: var(--font-gray-color); font-size: 18px; width: calc(100% / 9); margin-bottom: 50px; display: flex; flex-direction: column; align-items: center;}
 .clients-img-wrap ul li .img-wrap{width: 120px; position: relative; height: 120px; border: 3px solid var(--gray-color); border-radius: 50%;}
@@ -1128,7 +1130,7 @@ cursor:pointer;box-sizing:border-box;transition:background 0.4s;text-decoration:
 	.cus_wrap .ecoce-img-wrap{top: 20%; width: 69%; left: 2%;}
 	.cus_wrap .eco-clean-earth{top: 90%; right: 2%}
 	/* .cus_wrap .ecoce-img-wrap .ecoce-img{top: 10%;} */
-	.clients-img-wrap{margin: 180px auto;}
+	.clients-img-wrap{margin: 130px auto;}
 	.clients-img-wrap ul{margin: 0 2%;}
 	.box_wrap img{left: 2%;}
 	.box_wrap .box_btn{right: 2%;}
@@ -1320,7 +1322,7 @@ cursor:pointer;box-sizing:border-box;transition:background 0.4s;text-decoration:
 	.box_wrap .box_info ul li{flex-direction: column;}
 	
 	/* 푸터 */
-	.footer_wrap{padding: 40px 0; display: block;}
+	.footer_wrap{padding: 40px; display: block;}
 	.footer_wrap .img-wrap{ text-align: center; margin-bottom: 20px;}
 	.footer_wrap .img-wrap img{width: 30%; height: auto; float: none;}
 	.footer_wrap .footer_info{flex-direction: column;}
@@ -1368,8 +1370,8 @@ cursor:pointer;box-sizing:border-box;transition:background 0.4s;text-decoration:
 	.history_line_wrap ul li .right span:last-child{margin-left: 6px; font-size: 14px;}
 	.history_line_wrap ul li .right span:first-child, .history_line_wrap ul li .left span{font-size: 18px;}
 	/* 푸터 */
-	.footer_wrap .img-wrap img{width: 37%; height: auto;}
-	.footer_wrap{padding: 0; padding-bottom: 40px}
+	.footer_wrap{padding: 30px 15px;}
+	.footer_wrap .img-wrap img{width: 130px; height: auto;}
 
 	/* 리소프트 - index */
 	.header{height: 640px;}
