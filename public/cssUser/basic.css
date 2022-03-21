@@ -1337,7 +1337,7 @@ cursor:pointer;box-sizing:border-box;transition:background 0.4s;text-decoration:
 	.cus_wrap .eco-clean-earth{line-height: 35px;}
 	.cus_wrap .eco-clean-earth p:first-child{font-size: 28px;}
 	.cus_wrap .eco-clean-earth p:last-child{font-size: 22px;}
-	.cus_wrap .ecoce-bot{width: 80%;}
+	.cus_wrap .ecoce-bot{width: 95%;}
 	.b_wrap .business_list .flip{height: 300px;}
 	.header .banner-wrap .img-wrap{width: 400px;}
 	.header{height: 800px;}
@@ -1347,6 +1347,7 @@ cursor:pointer;box-sizing:border-box;transition:background 0.4s;text-decoration:
 	.b_wrap .busi_content_wrap .business_list .flip:first-child img{width: 135px;}
 	.b_wrap .business_list li a .title{font-size: 20px; }
 	.subTitleEng{font-size: 13px;}
+	.cus_wrap .ecoce-img-wrap{margin-top: 40px; }
 }
 
 @media screen and (max-width: 500px) {
