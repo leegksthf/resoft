@@ -102,16 +102,10 @@ button.move i{padding: 5px; font-size: 32px;}
 /* sssss */
 #menupc-wrapper {position: relative;display: block; z-index: 2;height: 100px; font-size: 15px;color: #fff;}
 /* 호버시 아래 밑줄 */
-.menu li {-webkit-transition: all 0.3s ease-out;
-	-moz-transition: all 0.3s ease-out;
-	-o-transition: all 0.3s ease-out;
-	transition: all 0.3s ease-out;
-}
-
 .menu li a {position: relative;}
 .menu li a::after {width: 0%; transition: all 0.4s ease-out; content: ""; position: absolute; background: var(--pink-color); height: 1px; bottom: -4px; left: 0;}
 .menu li:hover a::after {width: 50px; height: 1px; position: absolute; content: ""; display: inline-block; background: var(--pink-color); bottom: -4px; left: 0;}
-.menu {display: flex; align-items: center; justify-content: flex-end; margin: 0 auto;padding: 0; max-width: 1400px; list-style-type: none; height: 100%;}
+.menu {display: flex; align-items: center; justify-content: flex-end; margin: 0 auto; padding: 0; max-width: 1400px; list-style-type: none; height: 100%;}
 /* #menupc-wrapper:HOVER {background-color:#f5f5f5;}  */
 .menu li {cursor: pointer; padding: 41px 0;
     -webkit-transition: 0.3s ease-in-out;
@@ -1396,4 +1390,5 @@ cursor:pointer;box-sizing:border-box;transition:background 0.4s;text-decoration:
 	.map-wrap .map-info-wrap .map-info{width: 100%; margin-bottom: 23px;}
 	.map-wrap .map-info-wrap .map-info>p:first-child{margin-bottom: 7px;}
 	.news_wrap{background: url(/public/user/main/슬라이드배경430.png) no-repeat; background-size: cover;}
+	.clients-img-wrap ul li img{padding: 12px;}
 }
